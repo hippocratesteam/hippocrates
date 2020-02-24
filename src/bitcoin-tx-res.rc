@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Hanacoin"
-            VALUE "FileDescription",    "hanacoin-tx (CLI Hanacoin transaction editor utility)"
+            VALUE "CompanyName",        "Hippocrates"
+            VALUE "FileDescription",    "hippocrates-tx (CLI Hippocrates transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "hanacoin-tx"
+            VALUE "InternalName",       "hippocrates-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "hanacoin-tx.exe"
-            VALUE "ProductName",        "hanacoin-tx"
+            VALUE "OriginalFilename",   "hippocrates-tx.exe"
+            VALUE "ProductName",        "hippocrates-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

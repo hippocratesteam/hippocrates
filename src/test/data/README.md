@@ -1,7 +1,7 @@
 Description
 ------------
 
-This directory contains data-driven tests for various aspects of Hanacoin.
+This directory contains data-driven tests for various aspects of Hippocrates.
 
 License
 --------

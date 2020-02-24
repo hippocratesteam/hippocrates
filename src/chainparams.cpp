@@ -108,8 +108,8 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xc24e3741e5bd5aae2170e73316fabbc7b99bdc81541ecea4a2ed9c32e61804ba"); // 700000
 
-        // Hard premine (no difficulty retargeting) 445,000 blocks * 50 = 22,250,000 HanaCoins
-        // Soft premine (normal difficulty retargeting) 5,000 blocks * 50 = 250,000 HanaCoins
+        // Hard premine (no difficulty retargeting) 445,000 blocks * 50 = 22,250,000 HPCs
+        // Soft premine (normal difficulty retargeting) 5,000 blocks * 50 = 250,000 HPCs
         consensus.premineBlocks = 445000;
 
         // Switching on Lyra2REv3
@@ -140,8 +140,8 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("dnsseed.hanacoin.net");
-        vSeeds.emplace_back("dnsseed.hanacoin.org");
+        vSeeds.emplace_back("dnsseed.hippocrates.net");
+        vSeeds.emplace_back("dnsseed.hippocrates.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);  // H
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -151,7 +151,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
         base58Prefixes[OLD_SECRET_KEY] = std::vector<unsigned char>(1,178);
 
-        bech32_hrp = "hana";
+        bech32_hrp = "hpc";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -255,7 +255,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet-dnsseed.hanacoin.net");
+        vSeeds.emplace_back("testnet-dnsseed.hippocrates.net");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
@@ -265,7 +265,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
         base58Prefixes[OLD_SECRET_KEY] = std::vector<unsigned char>(1,239);
 
-        bech32_hrp = "thana";
+        bech32_hrp = "thpc";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
@@ -367,7 +367,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
         base58Prefixes[OLD_SECRET_KEY] = std::vector<unsigned char>(1,239);
 
-        bech32_hrp = "rhana";
+        bech32_hrp = "rhpc";
 
         /* enable fallback fee on regtest */
         m_fallback_fee_enabled = true;

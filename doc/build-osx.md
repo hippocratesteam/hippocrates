@@ -38,17 +38,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see the section *Disable-Wallet mode* below).
 
-Build Hanacoin Core
+Build Hippocrates Core
 ------------------------
 
-1. Clone the Hanacoin Core source code and cd into `hanacoin`
+1. Clone the Hippocrates Core source code and cd into `hippocrates`
 
-        git clone https://github.com/hanacoinproject/hanacoin
-        cd hanacoin
+        git clone https://github.com/hippocratesteam/hippocrates
+        cd hippocrates
 
-2.  Build Hanacoin Core:
+2.  Build Hippocrates Core:
 
-    Configure and build the headless Hanacoin Core binaries as well as the GUI (if Qt is found).
+    Configure and build the headless Hippocrates Core binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -70,33 +70,33 @@ Build Hanacoin Core
 
     or
 
-        cd ~/hanacoin/src
-        cp hanacoind /usr/local/bin/
-        cp hanacoin-cli /usr/local/bin/
+        cd ~/hippocrates/src
+        cp hippocratesd /usr/local/bin/
+        cp hippocrates-cli /usr/local/bin/
 
 Running
 -------
 
-Hanacoin Core is now available at `./src/hanacoind`
+Hippocrates Core is now available at `./src/hippocratesd`
 
 Before running, it's recommended that you create an RPC configuration file.
 
-    echo -e "rpcuser=hanacoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Hanacoin/hanacoin.conf"
+    echo -e "rpcuser=hippocratesrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Hippocrates/hippocrates.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Hanacoin/hanacoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/Hippocrates/hippocrates.conf"
 
-The first time you run hanacoind, it will start downloading the blockchain. This process could take several hours.
+The first time you run hippocratesd, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Hanacoin/debug.log
+    tail -f $HOME/Library/Application\ Support/Hippocrates/debug.log
 
 Other commands:
 -------
 
-    ./src/hanacoind -daemon # Starts the hanacoin daemon.
-    ./src/hanacoin-cli --help # Outputs a list of command-line options.
-    ./src/hanacoin-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/hippocratesd -daemon # Starts the hippocrates daemon.
+    ./src/hippocrates-cli --help # Outputs a list of command-line options.
+    ./src/hippocrates-cli help # Outputs a list of RPC commands when the daemon is running.
 
 Notes
 -----

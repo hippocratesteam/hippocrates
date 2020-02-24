@@ -38,8 +38,8 @@
         <translation>Билдирүүнү &amp;текшерүү...</translation>
     </message>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -101,8 +101,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Error</source>

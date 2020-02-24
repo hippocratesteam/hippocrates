@@ -90,8 +90,8 @@
         <translation>&amp;செய்தியை சரிசெய்...</translation>
     </message>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -225,8 +225,8 @@
         <translation>நல்வரவு</translation>
     </message>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Error</source>
@@ -712,8 +712,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Hanacoin Core</source>
-        <translation>Hanacoin மையம்</translation>
+        <source>Hippocrates Core</source>
+        <translation>Hippocrates மையம்</translation>
     </message>
     <message>
         <source>Information</source>

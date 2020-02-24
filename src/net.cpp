@@ -1524,7 +1524,7 @@ static void ThreadMapPort()
             }
         }
 
-        std::string strDesc = "Hanacoin " + FormatFullVersion();
+        std::string strDesc = "Hippocrates " + FormatFullVersion();
 
         do {
 #ifndef UPNPDISCOVER_SUCCESS

@@ -1,5 +1,5 @@
-Building Hanacoin
+Building Hippocrates
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the Hanacoin Core reference implementation of Hanacoin.
+elements of the Hippocrates Core reference implementation of Hippocrates.

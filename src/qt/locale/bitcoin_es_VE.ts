@@ -58,12 +58,12 @@
         <translation>Direcciones de recepción</translation>
     </message>
     <message>
-        <source>These are your Hanacoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas son tus direcciones Hanacoin para realizar pagos. Verifica siempre el monto y la dirección de recepción antes de enviar monedas. </translation>
+        <source>These are your Hippocrates addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas son tus direcciones Hippocrates para realizar pagos. Verifica siempre el monto y la dirección de recepción antes de enviar monedas. </translation>
     </message>
     <message>
-        <source>These are your Hanacoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas son tus direcciones Hanacoin para recibir pagos. Es recomendable usar una nueva dirección de recibo para cada transacción.</translation>
+        <source>These are your Hippocrates addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Estas son tus direcciones Hippocrates para recibir pagos. Es recomendable usar una nueva dirección de recibo para cada transacción.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -154,8 +154,8 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Hanacoin address</source>
-        <translation>Enviar monedas a una dirección Hanacoin</translation>
+        <source>Send coins to a Hippocrates address</source>
+        <translation>Enviar monedas a una dirección Hippocrates</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -170,8 +170,8 @@
         <translation>Abre la consola de depuración y diágnostico</translation>
     </message>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -198,12 +198,12 @@
         <translation>Encriptar las llaves privadas que pertenecen a tu billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your Hanacoin addresses to prove you own them</source>
-        <translation>Firma mensajes con tus direcciones Hanacoin para probar que eres dueño de ellas</translation>
+        <source>Sign messages with your Hippocrates addresses to prove you own them</source>
+        <translation>Firma mensajes con tus direcciones Hippocrates para probar que eres dueño de ellas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Hanacoin addresses</source>
-        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones Hanacoin especificas</translation>
+        <source>Verify messages to ensure they were signed with specified Hippocrates addresses</source>
+        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones Hippocrates especificas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -441,8 +441,8 @@
         <translation>Usa un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>Hanacoin</source>
-        <translation>Hanacoin</translation>
+        <source>Hippocrates</source>
+        <translation>Hippocrates</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -692,8 +692,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Hanacoin Core</source>
-        <translation>Hanacoin Core</translation>
+        <source>Hippocrates Core</source>
+        <translation>Hippocrates Core</translation>
     </message>
     <message>
         <source>Information</source>

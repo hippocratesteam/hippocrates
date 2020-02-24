@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #
-# Test new Hanacoin multisig prefix functionality.
+# Test new Hippocrates multisig prefix functionality.
 #
 
 from test_framework.test_framework import BitcoinTestFramework

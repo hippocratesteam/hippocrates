@@ -22,14 +22,14 @@ def setup():
     else:
         programs += ['lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
-    if not os.path.isdir('gitian.sigs.hana'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/hanacoinproject/gitian.sigs.hana.git'])
-    if not os.path.isdir('hanacoin-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/hanacoinproject/hanacoin-detached-sigs.git'])
+    if not os.path.isdir('gitian.sigs.hpc'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/hippocratesteam/gitian.sigs.hpc.git'])
+    if not os.path.isdir('hippocrates-detached-sigs'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/hippocratesteam/hippocrates-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
-    if not os.path.isdir('hanacoin'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/hanacoinproject/hanacoin.git'])
+    if not os.path.isdir('hippocrates'):
+        subprocess.check_call(['git', 'clone', 'https://github.com/hippocratesteam/hippocrates.git'])
     os.chdir('gitian-builder')
     make_image_prog = ['bin/make-base-vm', '--suite', 'bionic', '--arch', 'amd64']
     if args.docker:
@@ -46,40 +46,40 @@ def setup():
 def build():
     global args, workdir
 
-    os.makedirs('hanacoin-binaries/' + args.version, exist_ok=True)
+    os.makedirs('hippocrates-binaries/' + args.version, exist_ok=True)
     print('\nBuilding Dependencies\n')
     os.chdir('gitian-builder')
     os.makedirs('inputs', exist_ok=True)
 
     subprocess.check_call(['wget', '-N', '-P', 'inputs', 'http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz'])
     subprocess.check_call(['wget', '-N', '-P', 'inputs', 'https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch'])
-    subprocess.check_call(['make', '-C', '../hanacoin/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
+    subprocess.check_call(['make', '-C', '../hippocrates/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hanacoin='+args.commit, '--url', 'hanacoin='+args.url, '../hanacoin/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs.hana/', '../hanacoin/contrib/gitian-descriptors/gitian-linux.yml'])
-        subprocess.check_call('mv build/out/hanacoin-*.tar.gz build/out/src/hanacoin-*.tar.gz ../hanacoin-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hippocrates='+args.commit, '--url', 'hippocrates='+args.url, '../hippocrates/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs.hpc/', '../hippocrates/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call('mv build/out/hippocrates-*.tar.gz build/out/src/hippocrates-*.tar.gz ../hippocrates-binaries/'+args.version, shell=True)
 
     if args.windows:
         print('\nCompiling ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hanacoin='+args.commit, '--url', 'hanacoin='+args.url, '../hanacoin/contrib/gitian-descriptors/gitian-win.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs.hana/', '../hanacoin/contrib/gitian-descriptors/gitian-win.yml'])
-        subprocess.check_call('mv build/out/hanacoin-*-win-unsigned.tar.gz inputs/hanacoin-win-unsigned.tar.gz', shell=True)
-        subprocess.check_call('mv build/out/hanacoin-*.zip build/out/hanacoin-*.exe ../hanacoin-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hippocrates='+args.commit, '--url', 'hippocrates='+args.url, '../hippocrates/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs.hpc/', '../hippocrates/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call('mv build/out/hippocrates-*-win-unsigned.tar.gz inputs/hippocrates-win-unsigned.tar.gz', shell=True)
+        subprocess.check_call('mv build/out/hippocrates-*.zip build/out/hippocrates-*.exe ../hippocrates-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nCompiling ' + args.version + ' MacOS')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hanacoin='+args.commit, '--url', 'hanacoin='+args.url, '../hanacoin/contrib/gitian-descriptors/gitian-osx.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian.sigs.hana/', '../hanacoin/contrib/gitian-descriptors/gitian-osx.yml'])
-        subprocess.check_call('mv build/out/hanacoin-*-osx-unsigned.tar.gz inputs/hanacoin-osx-unsigned.tar.gz', shell=True)
-        subprocess.check_call('mv build/out/hanacoin-*.tar.gz build/out/hanacoin-*.dmg ../hanacoin-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'hippocrates='+args.commit, '--url', 'hippocrates='+args.url, '../hippocrates/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian.sigs.hpc/', '../hippocrates/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call('mv build/out/hippocrates-*-osx-unsigned.tar.gz inputs/hippocrates-osx-unsigned.tar.gz', shell=True)
+        subprocess.check_call('mv build/out/hippocrates-*.tar.gz build/out/hippocrates-*.dmg ../hippocrates-binaries/'+args.version, shell=True)
 
     os.chdir(workdir)
 
     if args.commit_files:
         print('\nCommitting '+args.version+' Unsigned Sigs\n')
-        os.chdir('gitian.sigs.hana')
+        os.chdir('gitian.sigs.hpc')
         subprocess.check_call(['git', 'add', args.version+'-linux/'+args.signer])
         subprocess.check_call(['git', 'add', args.version+'-win-unsigned/'+args.signer])
         subprocess.check_call(['git', 'add', args.version+'-osx-unsigned/'+args.signer])
@@ -92,22 +92,22 @@ def sign():
 
     if args.windows:
         print('\nSigning ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian.sigs.hana/', '../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
-        subprocess.check_call('mv build/out/hanacoin-*win64-setup.exe ../hanacoin-binaries/'+args.version, shell=True)
-        subprocess.check_call('mv build/out/hanacoin-*win32-setup.exe ../hanacoin-binaries/'+args.version, shell=True)
+        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-signed', '--destination', '../gitian.sigs.hpc/', '../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml'])
+        subprocess.check_call('mv build/out/hippocrates-*win64-setup.exe ../hippocrates-binaries/'+args.version, shell=True)
+        subprocess.check_call('mv build/out/hippocrates-*win32-setup.exe ../hippocrates-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nSigning ' + args.version + ' MacOS')
-        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian.sigs.hana/', '../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml'])
-        subprocess.check_call('mv build/out/hanacoin-osx-signed.dmg ../hanacoin-binaries/'+args.version+'/hanacoin-'+args.version+'-osx.dmg', shell=True)
+        subprocess.check_call(['bin/gbuild', '-i', '--commit', 'signature='+args.commit, '../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-signed', '--destination', '../gitian.sigs.hpc/', '../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+        subprocess.check_call('mv build/out/hippocrates-osx-signed.dmg ../hippocrates-binaries/'+args.version+'/hippocrates-'+args.version+'-osx.dmg', shell=True)
 
     os.chdir(workdir)
 
     if args.commit_files:
         print('\nCommitting '+args.version+' Signed Sigs\n')
-        os.chdir('gitian.sigs.hana')
+        os.chdir('gitian.sigs.hpc')
         subprocess.check_call(['git', 'add', args.version+'-win-signed/'+args.signer])
         subprocess.check_call(['git', 'add', args.version+'-osx-signed/'+args.signer])
         subprocess.check_call(['git', 'commit', '-a', '-m', 'Add '+args.version+' signed binary sigs for '+args.signer])
@@ -118,15 +118,15 @@ def verify():
     os.chdir('gitian-builder')
 
     print('\nVerifying v'+args.version+' Linux\n')
-    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hana/', '-r', args.version+'-linux', '../hanacoin/contrib/gitian-descriptors/gitian-linux.yml'])
+    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hpc/', '-r', args.version+'-linux', '../hippocrates/contrib/gitian-descriptors/gitian-linux.yml'])
     print('\nVerifying v'+args.version+' Windows\n')
-    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hana/', '-r', args.version+'-win-unsigned', '../hanacoin/contrib/gitian-descriptors/gitian-win.yml'])
+    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hpc/', '-r', args.version+'-win-unsigned', '../hippocrates/contrib/gitian-descriptors/gitian-win.yml'])
     print('\nVerifying v'+args.version+' MacOS\n')
-    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hana/', '-r', args.version+'-osx-unsigned', '../hanacoin/contrib/gitian-descriptors/gitian-osx.yml'])
+    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hpc/', '-r', args.version+'-osx-unsigned', '../hippocrates/contrib/gitian-descriptors/gitian-osx.yml'])
     print('\nVerifying v'+args.version+' Signed Windows\n')
-    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hana/', '-r', args.version+'-win-signed', '../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml'])
+    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hpc/', '-r', args.version+'-win-signed', '../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml'])
     print('\nVerifying v'+args.version+' Signed MacOS\n')
-    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hana/', '-r', args.version+'-osx-signed', '../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml'])
+    subprocess.check_call(['bin/gverify', '-v', '-d', '../gitian.sigs.hpc/', '-r', args.version+'-osx-signed', '../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml'])
 
     os.chdir(workdir)
 
@@ -135,7 +135,7 @@ def main():
 
     parser = argparse.ArgumentParser(usage='%(prog)s [options] signer version')
     parser.add_argument('-c', '--commit', action='store_true', dest='commit', help='Indicate that the version argument is for a commit or branch')
-    parser.add_argument('-u', '--url', dest='url', default='https://github.com/hanacoinproject/hanacoin', help='Specify the URL of the repository. Default is %(default)s')
+    parser.add_argument('-u', '--url', dest='url', default='https://github.com/hippocratesteam/hippocrates', help='Specify the URL of the repository. Default is %(default)s')
     parser.add_argument('-v', '--verify', action='store_true', dest='verify', help='Verify the Gitian build')
     parser.add_argument('-b', '--build', action='store_true', dest='build', help='Do a Gitian build')
     parser.add_argument('-s', '--sign', action='store_true', dest='sign', help='Make signed binaries for Windows and MacOS')
@@ -202,7 +202,7 @@ def main():
     if args.setup:
         setup()
 
-    os.chdir('hanacoin')
+    os.chdir('hippocrates')
     subprocess.check_call(['git', 'fetch'])
     subprocess.check_call(['git', 'checkout', args.commit])
     os.chdir(workdir)

@@ -58,7 +58,7 @@ struct Params {
     int BIP65Height;
     /** Block height at which BIP66 becomes active */
     int BIP66Height;
-    /** HanaCoin premine blocks */
+    /** Hippocrates premine blocks */
     int premineBlocks;
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,

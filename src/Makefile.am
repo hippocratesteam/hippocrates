@@ -80,11 +80,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += hanacoind
+  bin_PROGRAMS += hippocratesd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += hanacoin-cli hanacoin-tx
+  bin_PROGRAMS += hippocrates-cli hippocrates-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -468,16 +468,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-hanacoind_SOURCES = bitcoind.cpp
-hanacoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-hanacoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-hanacoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+hippocratesd_SOURCES = bitcoind.cpp
+hippocratesd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+hippocratesd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hippocratesd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-hanacoind_SOURCES += bitcoind-res.rc
+hippocratesd_SOURCES += bitcoind-res.rc
 endif
 
-hanacoind_LDADD = \
+hippocratesd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -491,38 +491,38 @@ hanacoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-hanacoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+hippocratesd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # bitcoin-cli binary #
-hanacoin_cli_SOURCES = bitcoin-cli.cpp
-hanacoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-hanacoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-hanacoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+hippocrates_cli_SOURCES = bitcoin-cli.cpp
+hippocrates_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+hippocrates_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hippocrates_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-hanacoin_cli_SOURCES += bitcoin-cli-res.rc
+hippocrates_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-hanacoin_cli_LDADD = \
+hippocrates_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-hanacoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+hippocrates_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-hanacoin_tx_SOURCES = bitcoin-tx.cpp
-hanacoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-hanacoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-hanacoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+hippocrates_tx_SOURCES = bitcoin-tx.cpp
+hippocrates_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+hippocrates_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+hippocrates_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-hanacoin_tx_SOURCES += bitcoin-tx-res.rc
+hippocrates_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-hanacoin_tx_LDADD = \
+hippocrates_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -530,7 +530,7 @@ hanacoin_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-hanacoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+hippocrates_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

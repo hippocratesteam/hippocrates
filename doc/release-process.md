@@ -5,7 +5,7 @@ Before every release candidate:
 
 * Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/hanacoinproject/hanacoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/hippocratesteam/hippocrates/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -34,12 +34,12 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/hanacoinproject/gitian.sigs.hana.git
-    git clone https://github.com/hanacoinproject/hanacoin-detached-sigs.git
+    git clone https://github.com/hippocratesteam/gitian.sigs.hpc.git
+    git clone https://github.com/hippocratesteam/hippocrates-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/hanacoinproject/hanacoin.git
+    git clone https://github.com/hippocratesteam/hippocrates.git
 
-### Hanacoin maintainers/release engineers, suggestion for writing release notes
+### Hippocrates maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -62,16 +62,16 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./hanacoin
+    pushd ./hippocrates
     export SIGNER="(your Gitian key, ie bluematt, sipa, etc)"
     export VERSION=(new version, e.g. 0.8.0)
     git fetch
     git checkout ${VERSION}
     popd
 
-Ensure your gitian.sigs.hana are up-to-date if you wish to gverify your builds against other Gitian signatures.
+Ensure your gitian.sigs.hpc are up-to-date if you wish to gverify your builds against other Gitian signatures.
 
-    pushd ./gitian.sigs.hana
+    pushd ./gitian.sigs.hpc
     git pull
     popd
 
@@ -95,10 +95,10 @@ Create the macOS SDK tarball, see the [macOS readme](README_osx.md) for details,
 
 NOTE: Gitian is sometimes unable to download files. If you have errors, try the step below.
 
-By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in hanacoin, then:
+By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in hippocrates, then:
 
     pushd ./gitian-builder
-    make -C ../hanacoin/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../hippocrates/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -106,57 +106,57 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url hanacoin=/path/to/hanacoin,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url hippocrates=/path/to/hippocrates,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Hanacoin Core for Linux, Windows, and macOS:
+### Build and sign Hippocrates Core for Linux, Windows, and macOS:
 
     export GITIAN_THREADS=2
     export GITIAN_MEMORY=3000
     
     pushd ./gitian-builder
-    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hanacoin=${VERSION} ../hanacoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.hana/ ../hanacoin/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/hanacoin-*.tar.gz build/out/src/hanacoin-*.tar.gz ../
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hippocrates=${VERSION} ../hippocrates/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs.hpc/ ../hippocrates/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/hippocrates-*.tar.gz build/out/src/hippocrates-*.tar.gz ../
 
-    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hanacoin=${VERSION} ../hanacoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.hana/ ../hanacoin/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/hanacoin-*-win-unsigned.tar.gz inputs/hanacoin-win-unsigned.tar.gz
-    mv build/out/hanacoin-*.zip build/out/hanacoin-*.exe ../
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hippocrates=${VERSION} ../hippocrates/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs.hpc/ ../hippocrates/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/hippocrates-*-win-unsigned.tar.gz inputs/hippocrates-win-unsigned.tar.gz
+    mv build/out/hippocrates-*.zip build/out/hippocrates-*.exe ../
 
-    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hanacoin=${VERSION} ../hanacoin/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.hana/ ../hanacoin/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/hanacoin-*-osx-unsigned.tar.gz inputs/hanacoin-osx-unsigned.tar.gz
-    mv build/out/hanacoin-*.tar.gz build/out/hanacoin-*.dmg ../
+    ./bin/gbuild --num-make $GITIAN_THREADS --memory $GITIAN_MEMORY --commit hippocrates=${VERSION} ../hippocrates/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs.hpc/ ../hippocrates/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/hippocrates-*-osx-unsigned.tar.gz inputs/hippocrates-osx-unsigned.tar.gz
+    mv build/out/hippocrates-*.tar.gz build/out/hippocrates-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`hanacoin-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`hanacoin-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`hanacoin-${VERSION}-win[32|64]-setup-unsigned.exe`, `hanacoin-${VERSION}-win[32|64].zip`)
-  4. macOS unsigned installer and dist tarball (`hanacoin-${VERSION}-osx-unsigned.dmg`, `hanacoin-${VERSION}-osx64.tar.gz`)
-  5. Gitian signatures (in `gitian.sigs.hana/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
+  1. source tarball (`hippocrates-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`hippocrates-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`hippocrates-${VERSION}-win[32|64]-setup-unsigned.exe`, `hippocrates-${VERSION}-win[32|64].zip`)
+  4. macOS unsigned installer and dist tarball (`hippocrates-${VERSION}-osx-unsigned.dmg`, `hippocrates-${VERSION}-osx64.tar.gz`)
+  5. Gitian signatures (in `gitian.sigs.hpc/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
-Add other gitian builders keys to your gpg keyring, and/or refresh keys: See `../hanacoin/contrib/gitian-keys/README.md`.
+Add other gitian builders keys to your gpg keyring, and/or refresh keys: See `../hippocrates/contrib/gitian-keys/README.md`.
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs.hana/ -r ${VERSION}-linux ../hanacoin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs.hana/ -r ${VERSION}-win-unsigned ../hanacoin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs.hana/ -r ${VERSION}-osx-unsigned ../hanacoin/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs.hpc/ -r ${VERSION}-linux ../hippocrates/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs.hpc/ -r ${VERSION}-win-unsigned ../hippocrates/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs.hpc/ -r ${VERSION}-osx-unsigned ../hippocrates/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
 
-Commit your signature to gitian.sigs.hana:
+Commit your signature to gitian.sigs.hpc:
 
-    pushd gitian.sigs.hana
+    pushd gitian.sigs.hpc
     git add ${VERSION}-linux/"${SIGNER}"
     git add ${VERSION}-win-unsigned/"${SIGNER}"
     git add ${VERSION}-osx-unsigned/"${SIGNER}"
@@ -170,22 +170,22 @@ Codesigner only: Create Windows/macOS detached signatures:
 
 Codesigner only: Sign the macOS binary:
 
-    transfer hanacoin-osx-unsigned.tar.gz to macOS for signing
-    tar xf hanacoin-osx-unsigned.tar.gz
+    transfer hippocrates-osx-unsigned.tar.gz to macOS for signing
+    tar xf hippocrates-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf hanacoin-win-unsigned.tar.gz
+    tar xf hippocrates-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/hanacoin-detached-sigs
+    cd ~/hippocrates-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -198,34 +198,34 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/macOS detached signatures:
 
 - Once the Windows/macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [hanacoin-detached-sigs](https://github.com/hanacoinproject/hanacoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [hippocrates-detached-sigs](https://github.com/hippocratesteam/hippocrates-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed macOS binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=${VERSION} ../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.hana/ ../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.hana/ -r ${VERSION}-osx-signed ../hanacoin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/hanacoin-osx-signed.dmg ../hanacoin-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=${VERSION} ../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs.hpc/ ../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.hpc/ -r ${VERSION}-osx-signed ../hippocrates/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/hippocrates-osx-signed.dmg ../hippocrates-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=${VERSION} ../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.hana/ ../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs.hana/ -r ${VERSION}-win-signed ../hanacoin/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/hanacoin-*win64-setup.exe ../hanacoin-${VERSION}-win64-setup.exe
-    mv build/out/hanacoin-*win32-setup.exe ../hanacoin-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=${VERSION} ../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs.hpc/ ../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs.hpc/ -r ${VERSION}-win-signed ../hippocrates/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/hippocrates-*win64-setup.exe ../hippocrates-${VERSION}-win64-setup.exe
+    mv build/out/hippocrates-*win32-setup.exe ../hippocrates-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
 
-    pushd gitian.sigs.hana
+    pushd gitian.sigs.hpc
     git add ${VERSION}-osx-signed/"${SIGNER}"
     git add ${VERSION}-win-signed/"${SIGNER}"
     git commit -a
-    git push  # Assuming you can push to the gitian.sigs.hana tree
+    git push  # Assuming you can push to the gitian.sigs.hpc tree
     popd
 
 ### After 3 or more people have gitian-built and their results match:
@@ -238,23 +238,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-hanacoin-${VERSION}-aarch64-linux-gnu.tar.gz
-hanacoin-${VERSION}-arm-linux-gnueabihf.tar.gz
-hanacoin-${VERSION}-i686-pc-linux-gnu.tar.gz
-hanacoin-${VERSION}-x86_64-linux-gnu.tar.gz
-hanacoin-${VERSION}-osx64.tar.gz
-hanacoin-${VERSION}-osx.dmg
-hanacoin-${VERSION}.tar.gz
-hanacoin-${VERSION}-win32-setup.exe
-hanacoin-${VERSION}-win32.zip
-hanacoin-${VERSION}-win64-setup.exe
-hanacoin-${VERSION}-win64.zip
+hippocrates-${VERSION}-aarch64-linux-gnu.tar.gz
+hippocrates-${VERSION}-arm-linux-gnueabihf.tar.gz
+hippocrates-${VERSION}-i686-pc-linux-gnu.tar.gz
+hippocrates-${VERSION}-x86_64-linux-gnu.tar.gz
+hippocrates-${VERSION}-osx64.tar.gz
+hippocrates-${VERSION}-osx.dmg
+hippocrates-${VERSION}.tar.gz
+hippocrates-${VERSION}-win32-setup.exe
+hippocrates-${VERSION}-win32.zip
+hippocrates-${VERSION}-win64-setup.exe
+hippocrates-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the hanacoin.com server, nor put them in the torrent*.
+space *do not upload these to the hippocrates.com server, nor put them in the torrent*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -264,21 +264,21 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the hanacoin.com server.
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the hippocrates.com server.
 
 ```
-- Update hanacoin.com version
+- Update hippocrates.com version
 
 - Announce the release:
 
-  - hanacoin-dev and hanacoin-dev mailing list
+  - hippocrates-dev and hippocrates-dev mailing list
 
-  - blog.hanacoin.com blog post
+  - blog.hippocrates.com blog post
 
   - Optionally twitter, ... but this will usually sort out itself
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/hanacoinproject/hanacoin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/hippocratesteam/hippocrates/releases/new) with a link to the archived release notes.
 
   - Celebrate

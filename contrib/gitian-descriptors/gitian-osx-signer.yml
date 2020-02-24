@@ -1,5 +1,5 @@
 ---
-name: "hanacoin-dmg-signer"
+name: "hippocrates-dmg-signer"
 suites:
 - "bionic"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/hanacoinproject/hanacoin-detached-sigs.git"
+- "url": "https://github.com/hippocratesteam/hippocrates-detached-sigs.git"
   "dir": "signature"
 files:
-- "hanacoin-osx-unsigned.tar.gz"
+- "hippocrates-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,8 +27,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=hanacoin-osx-unsigned.tar.gz
-  SIGNED=hanacoin-osx-signed.dmg
+  UNSIGNED=hippocrates-osx-unsigned.tar.gz
+  SIGNED=hippocrates-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

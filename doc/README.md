@@ -1,40 +1,40 @@
-Hanacoin Core
+Hippocrates Core
 =============
 
 Setup
 ---------------------
-Hanacoin Core is the original Hanacoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Hanacoin transactions (which is currently more than 7 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Hippocrates Core is the original Hippocrates client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Hippocrates transactions (which is currently more than 7 GBs); depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Hanacoin Core, visit [hanacoin.com](https://hanacoin.com).
+To download Hippocrates Core, visit [hippocrates.com](https://hippocrates.com).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Hanacoin Core on your native platform.
+The following are some helpful notes on how to run Hippocrates Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/hanacoin-qt` (GUI) or
-- `bin/hanacoind` (headless)
+- `bin/hippocrates-qt` (GUI) or
+- `bin/hippocratesd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run hanacoin-qt.exe.
+Unpack the files into a directory, and then run hippocrates-qt.exe.
 
 ### macOS
 
-Drag Hanacoin Core to your applications folder, and then run Hanacoin Core.
+Drag Hippocrates Core to your applications folder, and then run Hippocrates Core.
 
 ### Need Help?
 
-* See the documentation at the [Hanacoin Guide](https://www.hanacoin.com/#account)
+* See the documentation at the [Hippocrates Guide](https://www.hippocrates.com/#account)
 for help and more information.
-* Ask for help on the [Hanacoin Discord](https://discord.gg/XM4JnfX) channel.
+* Ask for help on the [Hippocrates Discord](https://discord.gg/XM4JnfX) channel.
 
 Building
 ---------------------
-The following are developer notes on how to build Hanacoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Hippocrates Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -46,7 +46,7 @@ The following are developer notes on how to build Hanacoin Core on your native p
 
 Development
 ---------------------
-The Hanacoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Hippocrates repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Release Notes](release-notes.md)
@@ -61,8 +61,8 @@ The Hanacoin repo's [root README](/README.md) contains relevant information on t
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Hanacoin Discord](https://discord.gg/XM4JnfX) channel.
-* Discuss general Hanacoin development on #general on Discord.
+* Discuss on the [Hippocrates Discord](https://discord.gg/XM4JnfX) channel.
+* Discuss general Hippocrates development on #general on Discord.
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

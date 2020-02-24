@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Hanacoin-Qt</string>
+  <string>Hippocrates-Qt</string>
   
   <key>CFBundleName</key>
-  <string>Hanacoin-Qt</string>
+  <string>Hippocrates-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.hanacoin.Hanacoin-Qt</string>
+  <string>org.hippocrates.Hippocrates-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.hanacoin.HanacoinPayment</string>
+      <string>org.hippocrates.HippocratesPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>hanacoin</string>
+        <string>hippocrates</string>
       </array>
     </dict>
   </array>
@@ -58,9 +58,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.hanacoin.paymentrequest</string>
+      <string>org.hippocrates.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Hanacoin payment request</string>
+      <string>Hippocrates payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -68,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-hanacoin-payment-request</string>
+        <string>application/x-hippocrates-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>hanacoinpaymentrequest</string>
+          <string>hippocratespaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -84,7 +84,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.hanacoin.paymentrequest</string>
+        <string>org.hippocrates.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

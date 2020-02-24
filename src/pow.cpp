@@ -4,7 +4,7 @@
 // Copyright (c) 2013-2014 Dr Kimoto Chan
 // Copyright (c) 2009-2014 The DigiByte developers
 // Copyright (c) 2013-2019 Monacoin Developers
-// Copyright (c) 2017-2019 Hanacoin Developers
+// Copyright (c) 2017-2019 Hippocrates Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -203,7 +203,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     arith_uint256 bnOld;
     bnNew.SetCompact(pindexLast->nBits);
     bnOld = bnNew;
-    // Hanacoin: intermediate uint256 can overflow by 1 bit
+    // Hippocrates: intermediate uint256 can overflow by 1 bit
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     bool fShift = bnNew.bits() > bnPowLimit.bits() - 1;
     if (fShift)

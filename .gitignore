@@ -3,13 +3,13 @@
 *.tar.gz
 
 *.exe
-src/hanacoin
-src/hanacoind
-src/hanacoin-cli
-src/hanacoin-tx
-src/test/test_hanacoin
-src/test/test_hanacoin_fuzzy
-src/qt/test/test_hanacoin-qt
+src/hippocrates
+src/hippocratesd
+src/hippocrates-cli
+src/hippocrates-tx
+src/test/test_hippocrates
+src/test/test_hippocrates_fuzzy
+src/qt/test/test_hippocrates-qt
 
 # autoreconf
 Makefile.in
@@ -82,12 +82,12 @@ src/qt/bitcoin-qt.includes
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-hanacoin-qt
-Hanacoin-Qt.app
+hippocrates-qt
+Hippocrates-Qt.app
 background.tiff*
 # Unit-tests
 Makefile.test
-hanacoin-qt_test
+hippocrates-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -100,7 +100,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_hanacoin.coverage/
+test_hippocrates.coverage/
 total.coverage/
 coverage_percent.txt
 

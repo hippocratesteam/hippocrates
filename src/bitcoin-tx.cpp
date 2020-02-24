@@ -98,9 +98,9 @@ static int AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || HelpRequested(gArgs)) {
         // First part of help message is specific to this utility
-        std::string strUsage = PACKAGE_NAME " hanacoin-tx utility version " + FormatFullVersion() + "\n\n" +
-            "Usage:  hanacoin-tx [options] <hex-tx> [commands]  Update hex-encoded hanacoin transaction\n" +
-            "or:     hanacoin-tx [options] -create [commands]   Create hex-encoded hanacoin transaction\n" +
+        std::string strUsage = PACKAGE_NAME " hippocrates-tx utility version " + FormatFullVersion() + "\n\n" +
+            "Usage:  hippocrates-tx [options] <hex-tx> [commands]  Update hex-encoded hippocrates transaction\n" +
+            "or:     hippocrates-tx [options] -create [commands]   Create hex-encoded hippocrates transaction\n" +
             "\n";
         strUsage += gArgs.GetHelpMessage();
 

@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven Hanacoin tests.
+Utilities to generate test vectors for the data-driven Hippocrates tests.
 
 Usage: 
 

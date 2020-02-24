@@ -6,8 +6,8 @@
 """
     ZMQ example using python3's asyncio
 
-    Hanacoin should be started with the command line arguments:
-        hanacoind -testnet -daemon \
+    Hippocrates should be started with the command line arguments:
+        hippocratesd -testnet -daemon \
                 -zmqpubrawtx=tcp://127.0.0.1:29402 \
                 -zmqpubrawblock=tcp://127.0.0.1:29402 \
                 -zmqpubhashtx=tcp://127.0.0.1:29402 \

@@ -5,42 +5,42 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with `make check`.
 
-To run the hanacoind tests manually, launch `src/test/test_hanacoin`. To recompile
+To run the hippocratesd tests manually, launch `src/test/test_hippocrates`. To recompile
 after a test file was modified, run `make` and then run the test again. If you
 modify a non-test file, use `make -C src/test` to recompile only what's needed
-to run the hanacoind tests.
+to run the hippocratesd tests.
 
-To add more hanacoind tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more hippocratesd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the `test/` directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the hanacoin-qt tests manually, launch `src/qt/test/test_hanacoin-qt`
+To run the hippocrates-qt tests manually, launch `src/qt/test/test_hippocrates-qt`
 
-To add more hanacoin-qt tests, add them to the `src/qt/test/` directory and
+To add more hippocrates-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.
 
 ### Running individual tests
 
-test_hanacoin has some built-in command-line arguments; for
+test_hippocrates has some built-in command-line arguments; for
 example, to run just the getarg_tests verbosely:
 
-    test_hanacoin --log_level=all --run_test=getarg_tests
+    test_hippocrates --log_level=all --run_test=getarg_tests
 
 ... or to run just the doubledash test:
 
-    test_hanacoin --run_test=getarg_tests/doubledash
+    test_hippocrates --run_test=getarg_tests/doubledash
 
-Run `test_hanacoin --help` for the full list.
+Run `test_hippocrates --help` for the full list.
 
 ### Note on adding test cases
 
 The sources in this directory are unit test cases.  Boost includes a
-unit testing framework, and since hanacoin already uses boost, it makes
+unit testing framework, and since hippocrates already uses boost, it makes
 sense to simply use this framework rather than require developers to
 configure some other framework (we want as few impediments to creating
 unit tests as possible).
 
-The build system is setup to compile an executable called "test_hanacoin"
+The build system is setup to compile an executable called "test_hippocrates"
 that runs all of the unit tests.  The main source file is called
 test_bitcoin.cpp. To add a new unit test file to our test suite you need
 to add the file to `src/Makefile.test.include`. The pattern is to create
