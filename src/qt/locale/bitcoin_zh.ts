@@ -136,7 +136,7 @@
     </message>
     <message>
         <source>Warning: Invalid Hippocrates address</source>
-        <translation>警告：汉娜币地址无效</translation>
+        <translation>警告：Hippocrates地址无效</translation>
     </message>
     </context>
 <context>
